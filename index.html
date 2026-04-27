@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JR Sports Talk</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .glass { background: rgba(15,23,42,.78); backdrop-filter: blur(14px); }
+  </style>
+</head>
+
+<body class="bg-slate-950 text-white font-sans">
+  <header class="sticky top-0 z-50 glass border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-5 py-4 flex justify-between items-center">
+      <div>
+        <h1 class="text-3xl font-black text-red-500">JR Sports Talk</h1>
+        <p class="text-xs tracking-[0.3em] text-slate-400">MLB • NBA • NFL</p>
+      </div>
+      <nav class="hidden md:flex gap-6 font-bold text-slate-300">
+        <a href="#scores" class="hover:text-white">Live Scores</a>
+        <a href="#mlb" class="hover:text-white">MLB</a>
+        <a href="#nba" class="hover:text-white">NBA</a>
+        <a href="#nfl" class="hover:text-white">NFL</a>
+        <a href="#takes" class="hover:text-white">Takes</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(239,68,68,.35),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,.22),transparent_35%)]"></div>
+    <div class="relative max-w-7xl mx-auto px-5 py-24 text-center">
+      <p class="inline-block rounded-full bg-red-600/20 border border-red-500/30 px-5 py-2 text-red-200 font-bold mb-6">
+        Live scores refresh automatically
+      </p>
+      <h2 class="text-5xl md:text-7xl font-black leading-tight">Real Sports Talk.<br>No BS.</h2>
+      <p class="mt-6 text-xl text-slate-300">MLB, NBA, and NFL coverage with live scores, hot takes, rankings, and reactions.</p>
+      <a href="#scores" class="inline-block mt-8 rounded-full bg-red-600 hover:bg-red-700 px-8 py-4 font-black">See Live Scores</a>
+    </div>
+  </section>
+
+  <section id="scores" class="max-w-7xl mx-auto px-5 py-16">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+      <div>
+        <p class="text-red-400 font-bold tracking-[0.25em] text-sm">SCOREBOARD</p>
+        <h2 class="text-4xl font-black">Live Scores</h2>
+      </div>
+      <p id="lastUpdated" class="text-slate-400">Loading scores...</p>
+    </div>
+
+    <div class="flex flex-wrap gap-3 mb-8">
+      <button onclick="loadScores('mlb')" class="league-btn rounded-full bg-red-600 px-6 py-3 font-black">MLB</button>
+      <button onclick="loadScores('nba')" class="league-btn rounded-full bg-slate-800 hover:bg-slate-700 px-6 py-3 font-black">NBA</button>
+      <button onclick="loadScores('nfl')" class="league-btn rounded-full bg-slate-800 hover:bg-slate-700 px-6 py-3 font-black">NFL</button>
+    </div>
+
+    <div id="scoreGrid" class="grid gap-5 md:grid-cols-2 lg:grid-cols-3"></div>
+  </section>
+
+  <section class="bg-slate-900/70 py-16">
+    <div class="max-w-7xl mx-auto px-5 grid gap-6 md:grid-cols-3">
+      <div id="mlb" class="rounded-3xl bg-slate-950 border border-white/10 p-7">
+        <h3 class="text-3xl font-black text-red-500 mb-4">MLB</h3>
+        <p class="text-slate-300">Power rankings, trade rumors, playoff races, breakout stars, and game reactions.</p>
+      </div>
+      <div id="nba" class="rounded-3xl bg-slate-950 border border-white/10 p-7">
+        <h3 class="text-3xl font-black text-red-500 mb-4">NBA</h3>
+        <p class="text-slate-300">Superstar debates, playoff predictions, game breakdowns, trades, and weekly rankings.</p>
+      </div>
+      <div id="nfl" class="rounded-3xl bg-slate-950 border border-white/10 p-7">
+        <h3 class="text-3xl font-black text-red-500 mb-4">NFL</h3>
+        <p class="text-slate-300">Weekly picks, QB rankings, draft talk, fantasy notes, and instant reactions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="takes" class="max-w-7xl mx-auto px-5 py-16">
+    <p class="text-red-400 font-bold tracking-[0.25em] text-sm">JR'S TAKES</p>
+    <h2 class="text-4xl font-black mt-2 mb-8">Featured Stories</h2>
+    <div class="grid gap-5 md:grid-cols-3">
+      <article class="rounded-3xl bg-slate-900 border border-white/10 p-6">
+        <span class="text-xs font-black bg-red-600/20 text-red-300 rounded-full px-3 py-1">NFL</span>
+        <h3 class="text-2xl font-black mt-5">QB play still decides everything</h3>
+        <p class="text-slate-400 mt-3">Elite quarterbacks change the entire ceiling of a team.</p>
+      </article>
+      <article class="rounded-3xl bg-slate-900 border border-white/10 p-6">
+        <span class="text-xs font-black bg-red-600/20 text-red-300 rounded-full px-3 py-1">NBA</span>
+        <h3 class="text-2xl font-black mt-5">Spacing wins in today’s NBA</h3>
+        <p class="text-slate-400 mt-3">The best teams create space and punish bad matchups.</p>
+      </article>
+      <article class="rounded-3xl bg-slate-900 border border-white/10 p-6">
+        <span class="text-xs font-black bg-red-600/20 text-red-300 rounded-full px-3 py-1">MLB</span>
+        <h3 class="text-2xl font-black mt-5">Young stars are changing baseball</h3>
+        <p class="text-slate-400 mt-3">Speed, power, and personality are making the game exciting again.</p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="border-t border-white/10 text-center text-slate-500 p-6">
+    © 2026 JR Sports Talk — Live scoreboard may depend on public sports data availability.
+  </footer>
+
+  <script>
+    let currentLeague = 'mlb';
+
+    const endpoints = {
+      mlb: 'https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard',
+      nba: 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard',
+      nfl: 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard'
+    };
+
+    function setActiveButton(league) {
+      document.querySelectorAll('.league-btn').forEach(btn => {
+        btn.className = 'league-btn rounded-full bg-slate-800 hover:bg-slate-700 px-6 py-3 font-black';
+      });
+      const index = league === 'mlb' ? 0 : league === 'nba' ? 1 : 2;
+      document.querySelectorAll('.league-btn')[index].className = 'league-btn rounded-full bg-red-600 px-6 py-3 font-black';
+    }
+
+    async function loadScores(league = currentLeague) {
+      currentLeague = league;
+      setActiveButton(league);
+      const grid = document.getElementById('scoreGrid');
+      grid.innerHTML = '<div class="text-slate-400">Loading scores...</div>';
+
+      try {
+        const res = await fetch(endpoints[league]);
+        const data = await res.json();
+        const events = data.events || [];
+
+        document.getElementById('lastUpdated').textContent =
+          'Last updated: ' + new Date().toLocaleTimeString();
+
+        if (!events.length) {
+          grid.innerHTML = '<div class="rounded-3xl bg-slate-900 border border-white/10 p-6 text-slate-300">No games showing right now for this league.</div>';
+          return;
+        }
+
+        grid.innerHTML = events.map(event => {
+          const comp = event.competitions?.[0];
+          const teams = comp?.competitors || [];
+          const status = event.status?.type?.shortDetail || event.status?.type?.description || 'Scheduled';
+
+          const away = teams.find(t => t.homeAway === 'away') || teams[0];
+          const home = teams.find(t => t.homeAway === 'home') || teams[1];
+
+          const awayName = away?.team?.shortDisplayName || 'Away';
+          const homeName = home?.team?.shortDisplayName || 'Home';
+          const awayScore = away?.score ?? '-';
+          const homeScore = home?.score ?? '-';
+          const awayLogo = away?.team?.logo || '';
+          const homeLogo = home?.team?.logo || '';
+
+          return `
+            <div class="rounded-3xl bg-slate-900 border border-white/10 p-6 shadow-xl">
+              <div class="flex justify-between items-center mb-5">
+                <span class="text-xs font-black text-red-300 bg-red-600/20 rounded-full px-3 py-1">${league.toUpperCase()}</span>
+                <span class="text-xs text-slate-400">${status}</span>
+              </div>
+
+              <div class="space-y-4">
+                <div class="flex items-center justify-between gap-3">
+                  <div class="flex items-center gap-3">
+                    ${awayLogo ? `<img src="${awayLogo}" class="w-8 h-8 object-contain">` : ''}
+                    <span class="font-bold">${awayName}</span>
+                  </div>
+                  <span class="text-2xl font-black">${awayScore}</span>
+                </div>
+
+                <div class="flex items-center justify-between gap-3">
+                  <div class="flex items-center gap-3">
+                    ${homeLogo ? `<img src="${homeLogo}" class="w-8 h-8 object-contain">` : ''}
+                    <span class="font-bold">${homeName}</span>
+                  </div>
+                  <span class="text-2xl font-black">${homeScore}</span>
+                </div>
+              </div>
+
+              <p class="text-slate-500 text-xs mt-5">${new Date(event.date).toLocaleString()}</p>
+            </div>
+          `;
+        }).join('');
+      } catch (err) {
+        grid.innerHTML = '<div class="rounded-3xl bg-slate-900 border border-white/10 p-6 text-red-300">Could not load live scores right now. Try refreshing later.</div>';
+      }
+    }
+
+    loadScores('mlb');
+    setInterval(() => loadScores(currentLeague), 60000);
+  </script>
+</body>
+</html>
